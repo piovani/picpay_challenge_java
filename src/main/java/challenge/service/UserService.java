@@ -2,11 +2,13 @@ package challenge.service;
 
 import challenge.domain.user.User;
 import challenge.domain.user.UserType;
+import challenge.dtos.UserDTO;
 import challenge.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -28,7 +30,17 @@ public class UserService {
         return this.repository.findUserById(id).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
+    public User createUser(UserDTO data) {
+        User user = new User(data);
+        this.repository.save(user);
+        return user;
+    }
+
     public void saveUser(User user) {
         this.repository.save(user);
+    }
+
+    public List<User> getAll() {
+        return this.repository.findAll();
     }
 }
