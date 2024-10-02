@@ -19,7 +19,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private  UserService userService;
+    private UserService userService;
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserDTO user) {
